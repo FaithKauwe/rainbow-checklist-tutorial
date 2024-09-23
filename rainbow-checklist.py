@@ -48,21 +48,29 @@ def select(function_code):
     if function_code == "C":
         input_item = user_input("Input item:")
         create(input_item)
-
     # Read item
     elif function_code == "R":
-        item_index = user_input("Index Number?")
-
+        item_index = int(user_input("Index Number?"))
         # Remember that item_index must actually exist or our program will crash.
         read(item_index)
-
     # Print all items
     elif function_code == "P":
         list_all_items()
-
+    elif function_code == "Q":
+        # This is where we want to stop our loop
+        return False
     # Catch all
     else:
         print("Unknown Option")
+
+running = True
+while running:
+    selection = user_input(f"Enter a letter: \nC adds to the list\n U replaces an item\n D deletes an item\n R prints an item from an index number\n P displays the list\n Q exits the loop, \n Enter here:")
+    running = select(selection)
+    if user_input not in ['C', 'U', 'D', 'R', 'P', 'Q']:
+        print("{}Not an option{}")
+    else:
+        os.system('clear')
 
 def test():
     create("purple sox")
